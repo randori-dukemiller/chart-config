@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: echo "${{ github.event.pull_request.title }}" | grep -Eq "^\[.+\/.+\] EN-[0-9]+ ") || exit 1;
+      - run: echo "${{ github.event.pull_request.title }}" | grep -Eq "^\[.+\/.+\] EN-[0-9]+ " || exit 1;
   c2:
     runs-on: ubuntu-latest
     outputs:
