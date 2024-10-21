@@ -1,0 +1,37 @@
+name: auto approve
+on: pull_request
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dmill-pr-bot[bot]' && endsWith(github.head_ref, '_am')
+    steps:
+#      - name: generate token
+#        id: generate_token
+#        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
+#        with:
+#          private_key: ${{ secrets.RENOVATE_PRIVATE_KEY }}
+#          app_id: ${{ secrets.RENOVATE_APP_ID }}
+#      - uses: actions/checkout@v3
+#        with:
+#          ref: ${{ github.event.pull_request.head.ref }}
+#      - env:
+#          GH_TOKEN:  ${{ steps.generate_token.outputs.token }}
+#        run: gh pr review --approve
+      - uses: slackapi/slack-github-action@v1.27.0
+        with:
+          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
+          payload: |
+            {
+              "text": "✨ A new deployment is ready for review ✨\n• <${{ github.event.pull_request.html_url || github.event.head_commit.url }}/files|${{ github.event.pull_request.title }}>",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "✨ A new deployment is ready for review ✨\n• <${{ github.event.pull_request.html_url || github.event.head_commit.url }}/files|${{ github.event.pull_request.title }}>"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

@@ -3,4 +3,5 @@ kind: Application
 spec:
   project: cert-manager
   source:
+    path: charts/cert-manager
     targetRevision: cert-manager-1.1.3
