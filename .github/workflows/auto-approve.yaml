@@ -1,7 +1,7 @@
 name: auto approve
 on: pull_request
 jobs:
-  build:
+  merge:
     runs-on: ubuntu-latest
     if: github.actor == 'dmill-pr-bot[bot]'
     steps:
@@ -11,6 +11,7 @@ jobs:
         with:
           private_key: ${{ secrets.RENOVATE_PRIVATE_KEY }}
           app_id: ${{ secrets.RENOVATE_APP_ID }}
+      - uses: actions/checkout@v3
       - env:
           GH_TOKEN:  ${{ steps.generate_token.outputs.token }}
         run: |
