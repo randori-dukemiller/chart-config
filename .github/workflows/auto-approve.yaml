@@ -12,6 +12,8 @@ jobs:
           private_key: ${{ secrets.RENOVATE_PRIVATE_KEY }}
           app_id: ${{ secrets.RENOVATE_APP_ID }}
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref_name }}
       - env:
           GH_TOKEN:  ${{ steps.generate_token.outputs.token }}
         run: |
