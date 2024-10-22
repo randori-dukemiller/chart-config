@@ -3,7 +3,7 @@ on: pull_request
 jobs:
   merge:
     runs-on: ubuntu-latest
-    if: github.actor == 'dmill-pr-bot[bot]'
+    if: github.actor == 'dmill-pr-bot[bot]' && endsWith(github.head_ref, '_am')
     steps:
       - name: generate token
         id: generate_token
