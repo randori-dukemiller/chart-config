@@ -7,6 +7,11 @@ jobs:
       pull-requests: write
     if: github.actor == 'dmill-pr-bot[bot]'
     steps:
+      - id: generate_token
+        uses: tibdex/github-app-token@32691ba7c9e7063bd457bd8f2a5703138591fa58 # v1.9.0
+        with:
+          app_id: ${{ secrets.ACD_APP_ID }}
+          private_key: ${{ secrets.ACD_PRIVATE_KEY }}
       - uses: hmarr/auto-approve-action@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ steps.generate_token.outputs.token }}
