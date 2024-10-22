@@ -3,15 +3,14 @@ on: pull_request
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     if: github.actor == 'dmill-pr-bot[bot]'
     steps:
-      - id: generate_token
-        uses: tibdex/github-app-token@32691ba7c9e7063bd457bd8f2a5703138591fa58 # v1.9.0
+      - name: generate token
+        id: generate_token
+        uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
         with:
-          app_id: ${{ secrets.ACD_APP_ID }}
-          private_key: ${{ secrets.ACD_PRIVATE_KEY }}
+          private_key: ${{ secrets.RENOVATE_PRIVATE_KEY }}
+          app_id: ${{ secrets.RENOVATE_APP_ID }}
       - uses: hmarr/auto-approve-action@v4
         with:
           github-token: ${{ steps.generate_token.outputs.token }}
