@@ -8,3 +8,5 @@ jobs:
     if: github.actor == 'dmill-pr-bot[bot]'
     steps:
       - uses: hmarr/auto-approve-action@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
