@@ -24,13 +24,13 @@ jobs:
           channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
           payload: |
             {
-              "text": "Deployment is ready for review: <${{ github.event.pull_request.html_url || github.event.head_commit.url }}|${{ github.event.pull_request.title }}>",
+              "text": "A new deployment is ready for review.\n<${{ github.event.pull_request.html_url || github.event.head_commit.url }}|${{ github.event.pull_request.title }}>",
               "blocks": [
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "Deployment is ready for review: <${{ github.event.pull_request.html_url || github.event.head_commit.url }}|${{ github.event.pull_request.title }}>"
+                    "text": "A new deployment is ready for review.\n<${{ github.event.pull_request.html_url || github.event.head_commit.url }}|${{ github.event.pull_request.title }}>"
                   }
                 }
               ]
