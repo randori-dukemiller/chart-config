@@ -22,7 +22,7 @@ jobs:
 #        run: gh pr review --approve
       - uses: slackapi/slack-github-action@v1.27.0
         with:
-          channel-id: ${{ secrets.SLACK_BOT_CHANNEL }}
+          channel-id: ${{ vars.ACD_SLACK_BOT_CHANNEL }}
           payload: |
             {
               "text": "✨ A new deployment is ready for review ✨\n• <${{ github.event.pull_request.html_url || github.event.head_commit.url }}/files|${{ github.event.pull_request.title }}>",
