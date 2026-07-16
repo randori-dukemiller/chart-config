@@ -20,7 +20,7 @@ jobs:
 #      - env:
 #          GH_TOKEN:  ${{ steps.generate_token.outputs.token }}
 #        run: gh pr review --approve
-      - uses: slackapi/slack-github-action@v1.27.0
+      - uses: slackapi/slack-github-action@v4.0.0
         with:
           channel-id: ${{ vars.ACD_SLACK_BOT_CHANNEL }}
           payload: |
